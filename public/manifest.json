@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "FocusFlow",
+  "version": "1.0.0",
+  "description": "Productivity-focused website blocker",
+  "permissions": [
+    "storage", 
+    "tabs", 
+    "webNavigation", 
+    "notifications",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+ 
+  "action": {
+    "default_popup": "./popup/index.html",
+    "default_icon":"./logo/logo-new.png"
+  },
+  "icons": {
+    "16": "./logo/logo-new.png", 
+    "48": "./logo/logo-new.png", 
+    "128": "./logo/logo-new.png"
+  }
+}
