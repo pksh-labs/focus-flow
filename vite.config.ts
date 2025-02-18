@@ -16,6 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: new URL('./popup/index.html', import.meta.url).pathname,
+        config: new URL('./config/index.html', import.meta.url).pathname,
         // background: new URL('./background/index.html', import.meta.url).pathname
       },
       output: {
