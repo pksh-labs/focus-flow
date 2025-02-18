@@ -2,6 +2,7 @@
 export default {
   content: [
     "./popup/**/*.{js,jsx,ts,tsx,html}",
+    "./config/**/*.{js,jsx,ts,tsx,html}",
     "./index.html"
   ],
   theme: {
