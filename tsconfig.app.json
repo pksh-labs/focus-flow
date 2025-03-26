@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["popup", "config"]
+  "include": ["popup", "config", "blocked"]
 }

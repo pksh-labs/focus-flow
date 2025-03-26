@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import App from './component.js'
+import App from "./component.js";
 
-const pluginTagId = 'extension-root'
-const component = document.getElementById(pluginTagId)!
+const pluginTagId = "extension-root";
+const component = document.getElementById(pluginTagId)!;
 ReactDOM.createRoot(component).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);
