@@ -8,8 +8,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === "STOP_GOAL") {
-    console.log("stop goal");
-
     activeGoal = null;
     removeURLBlocking();
   }
@@ -67,12 +65,12 @@ function setupURLBlocking(goal) {
     },
     () => {
       if (chrome.runtime.lastError) {
+        // Todo: find a better way to handle error or error reporting
         console.error(
           "Error applying blocking rules:",
           chrome.runtime.lastError,
         );
       } else {
-        console.log("Blocking rules applied successfully");
         chrome.declarativeNetRequest.getDynamicRules((rules) => {
           console.log("Currently applied rules:", rules);
         });
@@ -92,12 +90,11 @@ function removeURLBlocking() {
         },
         () => {
           if (chrome.runtime.lastError) {
+            // Todo: find a better way to handle error or error reporting
             console.error(
               "Error removing existing rules:",
               chrome.runtime.lastError,
             );
-          } else {
-            console.log("Existing rules removed successfully");
           }
         },
       );
@@ -110,9 +107,17 @@ function generateRuleId() {
 }
 
 function formatURLForBlocking(url) {
-  url = url.replace(/^https?:\/\//, "");
-  url = url.replace(/\/$/, "");
-  const formattedUrl = `*://${url}/*`;
-  console.log("Formatted URL for blocking:", formattedUrl);
+  url = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+  // Extract main domain
+  const parts = url.split(".");
+  if (parts.length > 2) {
+    // If subdomain exists, strip the first part
+    url = parts.slice(-2).join(".");
+  }
+
+  // Always apply wildcard for subdomains
+  const formattedUrl = `*://*.${url}/*`;
+
   return formattedUrl;
 }

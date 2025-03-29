@@ -1,11 +1,5 @@
 import React from "react";
-
-type Goal = {
-  id: string;
-  goal: string;
-  listType: "blacklist" | "whitelist";
-  urls: string[];
-};
+import { Goal } from "./helper";
 
 type GoalsListProps = {
   goals: Goal[];

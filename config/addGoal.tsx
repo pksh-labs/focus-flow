@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { Goal } from "./helper";
 
-type AddGoalsProps = {
+type AddGoalProps = {
   saveSettings: (
-    goal: string,
-    listType: "blacklist" | "whitelist",
-    urls: string[],
+    goal: Goal["goal"],
+    listType: Goal["listType"],
+    urls: Goal["urls"],
   ) => void;
 };
 
-export default function AddGoals({ saveSettings }: AddGoalsProps) {
+export default function AddGoals({ saveSettings }: AddGoalProps) {
   const [goal, setGoal] = useState("");
   const [listType, setListType] = useState<"blacklist" | "whitelist">(
     "blacklist",
@@ -18,7 +19,7 @@ export default function AddGoals({ saveSettings }: AddGoalsProps) {
 
   const validateUrl = (url: string) => {
     try {
-      new URL(url); // This throws if the URL is invalid
+      new URL(url);
       return true;
     } catch (_) {
       return false;

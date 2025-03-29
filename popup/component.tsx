@@ -3,7 +3,7 @@ import GoalListDB from "../db/goalList";
 
 const goalsDB = new GoalListDB();
 
-const FocusFlow = () => {
+const FocusFlow: React.FC = () => {
   const [goals, setGoals] = useState<
     { id: string; name: string; active: boolean }[]
   >([]);
@@ -25,7 +25,6 @@ const FocusFlow = () => {
         console.error("Failed to load settings:", err);
         return;
       }
-      // alert(JSON.stringify(data))
       if (data) {
         setGoals(data);
       } else {

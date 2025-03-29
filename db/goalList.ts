@@ -1,7 +1,7 @@
 export default class GoalListDB {
   dbName: string;
   dbVersion: number;
-  db: null | IDBDatabase;
+  db: IDBDatabase | null;
 
   constructor() {
     this.dbName = "goal-list-db";
@@ -9,7 +9,7 @@ export default class GoalListDB {
     this.db = null;
   }
 
-  init(callback: any) {
+  init(callback: (error: Error | null, db?: IDBDatabase) => void) {
     const request = indexedDB.open(this.dbName, this.dbVersion);
 
     request.onerror = () => {
@@ -30,7 +30,10 @@ export default class GoalListDB {
     };
   }
 
-  saveSettings(settings: any, callback: any) {
+  saveSettings(
+    settings: Record<string, any>,
+    callback: (error: Error | null) => void,
+  ) {
     if (!this.db) {
       callback(new Error("Database not initialized"));
       return;
@@ -38,10 +41,7 @@ export default class GoalListDB {
 
     const transaction = this.db.transaction(["settings"], "readwrite");
     const store = transaction.objectStore("settings");
-    const request = store.put(settings);
-
-    // todo make good use of request
-    console.log(request);
+    store.put(settings);
 
     transaction.oncomplete = () => {
       callback(null);
@@ -52,7 +52,10 @@ export default class GoalListDB {
     };
   }
 
-  saveAllSettings(settings: any[], callback: any) {
+  saveAllSettings(
+    settings: Record<string, any>[],
+    callback: (error: Error | null) => void,
+  ) {
     if (!this.db) {
       callback(new Error("Database not initialized"));
       return;

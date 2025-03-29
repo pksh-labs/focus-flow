@@ -21,7 +21,6 @@ export default defineConfig({
         blocked: new URL("./blocked/index.html", import.meta.url).pathname,
         background: new URL("./backgroundService/index.js", import.meta.url)
           .pathname,
-
       },
       output: {
         entryFileNames: "[name]/[name].js",

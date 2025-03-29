@@ -17,8 +17,6 @@ export default function FocusFlow() {
 
   useEffect(() => {
     goalsDB.init((error: any) => {
-      console.log("init");
-
       if (error) {
         console.error("Database initialization error:", error);
         return;
