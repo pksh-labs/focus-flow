@@ -4,12 +4,7 @@
   "version": "0.0.1",
   "description": "Productivity-focused website blocker",
   "permissions": [
-    "storage",
-    "tabs",
-    "webNavigation",
-    "notifications",
-    "declarativeNetRequest",
-    "declarativeNetRequestWithHostAccess"
+    "declarativeNetRequest"
   ],
   "host_permissions": ["<all_urls>"],
   "action": {
